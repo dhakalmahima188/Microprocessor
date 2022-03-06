@@ -1,27 +1,25 @@
-.MODEL SMALL
-.DATA
-MSG   DB  "Enter: ",'$'
-.CODE
-MOV   AX,@DATA
-MOV   DS,AX
-
-;msg print
-LEA DX,MSG          
-MOV AH,09H
-INT 21H
-
-read:               
-MOV AH,01
-INT 21H
-CMP AL,13              ;ascii for "ENTER" key
-JE EXIT
-
-MOV DL,0AH         ;moving the content of AH into dl to print it
-MOV AH,02          
-INT 21H
-LOOP read
-
-EXIT:
-MOV AH,4CH 
-INT 21H
-END
+.model
+.stack 32
+.data
+str db 50 dup("$")
+.code 
+main proc far
+    mov ax,@data
+    mov ds,ax
+    mov si,offset str
+    l2: 
+    mov ah,01H
+    int 21H
+    cmp al,13
+    je L1
+    mov[si],al
+    inc si
+    jmp l2
+    l1: 
+    mov ah,09H
+    mov dx,offset str
+    int 21h
+    mov ax,4c00h
+    int 21H
+main endp
+end main
