@@ -28,15 +28,7 @@ no_swap:
     mov cl,06
     mov si, offset arr
 display:
-    ; mov dl,arr[si]
-    ; add dl,30h
-    ; mov ah,02h
-    ; int 21H
-    ; mov dl,' '
-    ; mov ah,02h
-    ; int 21H
-    ; inc si
-     mov ah,00h
+    mov ah,00h
     mov al,[si] 
     aam
     add ax,3030h

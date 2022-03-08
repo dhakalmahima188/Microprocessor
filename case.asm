@@ -17,6 +17,7 @@
         mov si, 0
         mov cx, 0
         mov cl, no_of_char
+        
 case:   cmp str[si], 'a'
         jb skip
         cmp str[si], 'z'
