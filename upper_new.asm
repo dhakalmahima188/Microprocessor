@@ -1,4 +1,4 @@
-.model
+.model small
 .stack 32
 .data
 
@@ -24,49 +24,37 @@ mov ax,@data
 mov ds,ax
 mov bl,1
 
-mov ah,09H
-lea dx,msg
-int 21h
-
-
 lea si,str
 
 loops:
+
 mov ah,01H
 int 21H
-mov [si],al
-cmp al,20h
+mov dl,al
+cmp al,'a'
+jb skip
+cmp al,'z'
+ja skip
+
+sub dl,20h
+skip:
+mov [si],dl
+
 jne down
 inc bl
 down:
 inc si
 cmp al,13
 jnz loops
+; mov byte ptr[si-1],'$'
 
 
-
-; mov ah,09H
-; lea dx,str
-; int 21h
+mov ah,09H
+lea dx,str
+int 21h
 newline
 
-
-mov si, offset str
-display:
-mov ah,02H
-mov dl,[si]
-cmp dl,'$'
-je skip
-cmp dl,13
-je skip
-sub dl,20h
-skip:
-int 21H
-inc si
-cmp dl,'$'
-jne display
-
-
+lea si,str
 newline
 
 
@@ -74,11 +62,6 @@ newline
 mov ah,09H
 lea dx,count_msg
 int 21h
-
-
-
-
-
 mov ah,02H
 mov dl,bl
 add dl,30h
