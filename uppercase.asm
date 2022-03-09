@@ -2,9 +2,8 @@
 .stack 32
 .data
 
-count_msg db "Total count: $"
-msg db "Enter string : $"
 maxchar db 255
+no_of_char db ?
 str db 20 dup('$')
 
 
@@ -22,48 +21,32 @@ endm
 main proc far
 mov ax,@data
 mov ds,ax
-mov bl,1
+
+mov ah,0ah
+lea dx,maxchar
+int 21h
+
+mov si,0
+mov cx,0
+mov cl,no_of_char
 
 lea si,str
 
 loops:
 
-mov ah,01H
-int 21H
-mov dl,al
-cmp al,'a'
+cmp byte ptr[si],'a'
 jb skip
-cmp al,'z'
+cmp byte ptr[si],'z'
 ja skip
-sub dl,20h
+sub byte ptr[si],20h
+
 skip:
-mov [si],dl
-
-jne down
-inc bl
-down:
 inc si
-cmp al,13
-jnz loops
-; mov byte ptr[si-1],'$'
+loop loops
 
-
+newline
 mov ah,09H
 lea dx,str
-int 21h
-newline
-
-lea si,str
-newline
-
-
-
-mov ah,09H
-lea dx,count_msg
-int 21h
-mov ah,02H
-mov dl,bl
-add dl,30h
 int 21h
 
 mov ax,4c00h
