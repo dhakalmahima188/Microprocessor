@@ -4,7 +4,7 @@
   srow db 5
   scol db 10
   erow db 10
- ecol db 70
+  ecol db 70
 
 .code 
 main proc far
@@ -13,7 +13,6 @@ mov ds,ax
 
 mov ax,0003h
 int 10H
-
 
 
 mov ax,0600h
