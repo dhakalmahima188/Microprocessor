@@ -18,7 +18,7 @@
 
 		mov dl, 20    ;coloumn 
 		mov dh, 10     ;row
-		mov bh, 0      ;page no
+		; mov bh, 0      ;page no
 		mov ah, 02     ;set curser
 		int 10h
 

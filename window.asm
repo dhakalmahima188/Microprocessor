@@ -14,7 +14,6 @@ mov ds,ax
 mov ax,0003h
 int 10H
 
-
 mov ax,0600h
 mov bh,17h
 mov ch,srow
@@ -24,11 +23,13 @@ mov dl,ecol
 int 10h
 
 
+
 mov dl,32
 mov ah,02h
 mov bx,0
 
 row_write:
+
 push dx
 mov dh,srow
 mov dl,scol
@@ -38,6 +39,7 @@ int 10H
 pop dx
 push cx
 mov cx,60
+
 coloumn_write:
 int 21H
 inc dl

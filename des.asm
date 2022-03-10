@@ -1,7 +1,7 @@
-.model small
+.model
 .stack 32
 .data
-arr db 6,5,32,82,70,04
+arr db 8,7,5,3,4,0
 .code 
 main proc far
     mov ax,@data
@@ -12,7 +12,6 @@ start:
     mov si,00h
     mov cx,06h
 l1:
-    mov ah,00h
     mov al,arr[si]
     cmp al, arr[si+1]
     jnc no_swap
@@ -26,22 +25,14 @@ no_swap:
     jnz start
     mov cx , 06
     mov si,00H
-    mov cl,06
-    mov si, offset arr
 display:
-    mov ah,00h
-    mov al,[si] 
-    aam
-    add ax,3030h
-    mov bx,ax
-    mov ah,02
-    mov dl,bh
-    int 21h
-    mov dl,bl
-    int 21h
-
-    mov dl,32
-    int 21h
+    mov dl,arr[si]
+    add dl,30h
+    mov ah,02h
+    int 21H
+    mov dl,' '
+    mov ah,02h
+    int 21H
     inc si
     loop display
  mov ax,4c00h

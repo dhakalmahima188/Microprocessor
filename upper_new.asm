@@ -5,6 +5,7 @@
 count_msg db "Total count: $"
 msg db "Enter string : $"
 maxchar db 255
+nchar db ?
 str db 20 dup('$')
 
 
@@ -26,10 +27,17 @@ mov bl,1
 
 lea si,str
 
+mov ah,0ah
+lea dx,maxchar
+int 21h
+
+lea cx,nchar
+
 loops:
 
 mov ah,01H
 int 21H
+
 mov dl,al
 cmp al,'a'
 jb skip
@@ -38,13 +46,14 @@ ja skip
 sub dl,20h
 skip:
 mov [si],dl
-
+cmp byte ptr[si],' '
 jne down
 inc bl
 down:
 inc si
 cmp al,13
 jnz loops
+
 ; mov byte ptr[si-1],'$'
 
 
@@ -61,6 +70,7 @@ newline
 mov ah,09H
 lea dx,count_msg
 int 21h
+
 mov ah,02H
 mov dl,bl
 add dl,30h
