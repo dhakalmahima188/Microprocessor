@@ -14,17 +14,17 @@ mov ds,ax
 mov ax,0003h
 int 10H
 
-mov ax,0600h
-mov bh,17h
-mov ch,srow
-mov cl,scol
-mov dh,erow
-mov dl,ecol
-int 10h
+; mov ax,0600h
+; mov bh,17h
+; mov ch,srow
+; mov cl,scol
+; mov dh,erow
+; mov dl,ecol
+; int 10h
 
 
 
-mov dl,32
+mov dl,' '
 mov ah,02h
 mov bx,0
 
