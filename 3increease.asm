@@ -8,37 +8,22 @@ main proc far
  mov ax,@data
 mov ds,ax
 
-mov ah,01h
-int 21h
-
-mov ah,02h
-mov ah,0ah
-int 21H
-mov ah,0dh
-int 21H
-
-
-sub al,30h
-mov ah,0h
-push ax
-
 mov dx,00
-mov cx,5
-mov ax,00
+mov cx,03
+mov ax,01h
+mov dx,03
+
 
 start:
-add dx,1
-; add al,dl
-add sum,dx
 
+add ax,dx
+add sum,ax
 jnc skip
 inc ah
 skip:
 loop start
-
-pop ax
-mul sum
-
+inc sum
+mov ax,sum
 l2:
 mov dx,000h
 div ten

@@ -2,7 +2,7 @@
 .stack 32
 .data
  ten dw 10
- sum dw 0
+ sum dw 1
 .code 
 main proc far
  mov ax,@data
@@ -20,24 +20,25 @@ int 21H
 
 sub al,30h
 mov ah,0h
-push ax
 
-mov dx,00
-mov cx,5
-mov ax,00
+
+mov dl,al
+mov cl,al
+mov al,01
 
 start:
-add dx,1
-; add al,dl
-add sum,dx
+mul dl
+; mul sum
+mov sum,ax
 
 jnc skip
 inc ah
 skip:
+dec dl
 loop start
 
-pop ax
-mul sum
+mov ax,sum
+
 
 l2:
 mov dx,000h

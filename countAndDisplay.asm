@@ -44,25 +44,15 @@ inc si
 cmp al,13
 jnz loops
 
-
-
 mov ah,09H
 lea dx,str
 int 21h
-
-
-
-
 
 newline
 
 mov ah,09H
 lea dx,count_msg
 int 21h
-
-
-
-
 
 mov ah,02H
 mov dl,bl
