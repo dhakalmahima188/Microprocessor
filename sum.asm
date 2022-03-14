@@ -2,6 +2,7 @@
 .stack 32
 .data
 ten dw 10
+sum dw 0
 .code 
 main proc far
  mov ax,@data
@@ -14,12 +15,13 @@ mov ax,00
 start:
 inc dl
 add al,dl
+mov sum,al
 jnc skip
 inc ah
 skip:
 loop start
 mov cx,0
-
+mov al,sum
 l2:
 mov dx,000h
 div ten

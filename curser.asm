@@ -12,7 +12,7 @@ mov bh,00
 mov dh,row   ;dh as row
 mov dl,col    ;dl as coloumn
 
-
+int 10h
 
 mov ax,4c00h
 int 21H

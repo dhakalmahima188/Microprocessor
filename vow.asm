@@ -28,26 +28,24 @@ main proc far
             mov     cx,0
             mov     cl, no_of_char
        
-  
+            start:
+            push cx
+            mov cx,0ah
+            lea si,vow
+            mov al,[bx]
+            one:
+            cmp al, [si]
+            jne skip
+            inc count
+            skip:
+            inc si       
+            loop one
+            inc bx
+            pop cx
+            loop start 
 
-            newline
-    next:   
-            push    cx
-            lea     si,vow
-            mov     cl,0ah
-            mov     al,[bx]
-    up:     
-            cmp     al,[si]
-            jne     down
-            inc     count
-    down:   
-            inc     si
-            loop    up
-            inc     bx
-            pop     cx
-            loop    next
-
-        
+       
+           
             newline
             mov     ah,00h
             mov     al,count
